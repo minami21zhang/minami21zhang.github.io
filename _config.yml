@@ -25,10 +25,10 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "张景南"
-  pronouns         : # example: "she/her"  
+  pronouns         : "18009511157"
   bio              : "去挥霍和珍惜是同一件事情。"
-  location         : "如果不对我猫毛过敏这里就会有三只猫的家"
-  employer         : "南京大学 | 新闻传播学院-数字营销传播"
+  location         : "南京大学"
+  employer         : "新闻传播学院 | 数字营销传播"
   uri              : # URL
   email            : "zhang.jingnan.21@smail.nju.edu.cn" 
 
@@ -51,7 +51,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "minami12zhang"
+  github           : #"minami21zhang"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
