@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "zh-CN"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "张景南 / 简历·作品集"
+title                    : "张景南 ︱ 简历·作品集"
 title_separator          : "-"
 name                     : &name "张景南"
 description              : &description "张景南|广告学、品牌传播与创意实践"   # Update this with a general description of your site, this is the default if not overridden by a page
