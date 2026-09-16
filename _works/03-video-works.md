@@ -20,6 +20,6 @@ header:
 ### 全部视频作品
 
 <div class="qr-block">
-<img src="/images/oorks/video-qr.png" alt="扫码查看全部视频作品">
+<img src="/images/works/video-qr.png" alt="扫码查看全部视频作品">
 <p class="qr-block__caption">扫码查看全部视频作品</p>
 </div>
