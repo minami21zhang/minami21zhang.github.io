@@ -17,9 +17,9 @@
   /* keep footer in normal document flow so custom widgets do not overlap content */
   height: auto;
 
-  /* keep the footer on the bottom of the page */
-  position: fixed;
-  bottom: 0;
+  /* 版权信息栏平时不显示，只有滚动到页面最底部时才出现。
+     所以这里用 normal flow（relative），而不是固定在视口底部（fixed）。 */
+  position: relative;
 
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;
@@ -58,10 +58,9 @@
 }
 
 @media screen and (max-width: 768px) {
-  /* don't pin the footer on mobile devices */
+  /* 移动端：版权信息栏同样只在滚动到底部时出现（保持 normal flow） */
   .page__footer {
     position: relative;
-    bottom: auto;
   }
 }
 

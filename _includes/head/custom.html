@@ -10,13 +10,19 @@
  <link rel="preload" href="{{ base_path }}/assets/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ base_path }}/assets/css/fontawesome.css"></noscript>
 
-<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
-<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
-<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
-<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
-<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
+<!-- favicon：黑猫（源图 local/favicon-source.png，用 local/make-favicon.ps1 生成各尺寸）
+     末尾的 ?v= 是缓存版本号，见 _config.yml 的 asset_version -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png?v={{ site.asset_version | default: 1 }}"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png?v={{ site.asset_version | default: 1 }}" sizes="32x32"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png?v={{ site.asset_version | default: 1 }}" sizes="192x192"/>
 <link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
-<link rel="icon" href="/images/favicon.ico"/>
+<link rel="icon" href="{{ base_path }}/images/favicon.ico?v={{ site.asset_version | default: 1 }}"/>
 <meta name="theme-color" content="var(--global-bg-color)"/>
+
+<!-- 版权信息（机器可读） -->
+<meta name="author" content="{{ site.name }}">
+<meta name="copyright" content="&copy; {{ site.time | date: '%Y' }} {{ site.name }}。本站全部文字、摄影作品、设计作品与策划案均为本人原创，未经许可请勿转载或用于商业用途。">
+<link rel="copyright" href="{{ base_path }}/copyright/"/>
+<link rel="license" href="{{ base_path }}/copyright/"/>
 
 <!-- end custom head snippets -->

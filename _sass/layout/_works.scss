@@ -1,0 +1,625 @@
+/* ==========================================================================
+   WORKS / PORTFOLIO PAGES
+   「代表作」「其他作品」的卡片网格、「兴趣爱好」的图文卡片、「个人简历」的时间线
+   —— 这些样式由 assets/css/main.scss 引入
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. 作品卡片网格（代表作 / 其他作品）
+   -------------------------------------------------------------------------- */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25em;
+  margin: 1.5em 0 2.5em;
+
+  @include breakpoint($small) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include breakpoint($large) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* 作品条目较少时，避免卡片被拉得过宽 */
+.work-grid--wide {
+  @include breakpoint($large) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.work-card {
+  height: 100%;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  background-color: var(--global-bg-color);
+  overflow: hidden;
+  transition: $global-transition;
+
+  &:hover {
+    border-color: var(--global-dark-border-color);
+    box-shadow: 0 6px 20px rgba(#000, 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+/* 覆盖 .archive a 默认的下划线 */
+.archive .work-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+/* 覆盖 .archive a:hover img 的阴影，避免和卡片阴影叠加 */
+.archive .work-card__link:hover img {
+  box-shadow: none;
+}
+
+.work-card__teaser {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background-color: var(--global-footer-bg-color);
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+}
+
+.work-card__teaser--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: var(--global-text-color-light);
+}
+
+.work-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1em 1.1em 1.2em;
+}
+
+.work-card__title {
+  margin: 0 0 0.35em;
+  font-size: $type-size-5;
+  line-height: 1.35;
+}
+
+.work-card__subtitle {
+  margin: 0 0 0.5em;
+  font-size: $type-size-6;
+  color: var(--global-text-color-light);
+}
+
+.work-card__excerpt {
+  margin: 0;
+  font-size: $type-size-6;
+}
+
+.work-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin: 0.85em 0 0;
+  padding: 0;
+}
+
+.work-card__tag {
+  padding: 0.15em 0.6em;
+  border: 1px solid var(--global-border-color);
+  border-radius: 999px;
+  font-size: $type-size-6;
+  line-height: 1.6;
+  color: var(--global-text-color-light);
+  white-space: nowrap;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. 图文卡片网格（兴趣爱好）
+   -------------------------------------------------------------------------- */
+
+.hobby-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25em;
+  margin: 1.5em 0 2.5em;
+
+  @include breakpoint($small) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.hobby-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--global-border-color);
+  border-radius: $border-radius;
+  background-color: var(--global-bg-color);
+  overflow: hidden;
+  transition: $global-transition;
+
+  &:hover {
+    border-color: var(--global-dark-border-color);
+    box-shadow: 0 6px 20px rgba(#000, 0.12);
+  }
+}
+
+.hobby-card__teaser {
+  aspect-ratio: 16 / 9;
+  background-color: var(--global-footer-bg-color);
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+  }
+}
+
+.hobby-card__body {
+  flex: 1;
+  padding: 1em 1.1em 1.2em;
+}
+
+.hobby-card__title {
+  margin: 0 0 0.4em;
+  font-size: $type-size-5;
+  line-height: 1.35;
+}
+
+.hobby-card__text {
+  margin: 0;
+  font-size: $type-size-6;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   3. 时间线 / 条目列表（个人简历：教育经历、项目经历）
+   -------------------------------------------------------------------------- */
+
+.timeline {
+  margin: 1.5em 0 2.5em;
+}
+
+.timeline__item {
+  padding: 1em 1.25em;
+  margin-bottom: 1.25em;
+  border: 1px solid var(--global-border-color);
+  border-left: 3px solid var(--global-base-color);
+  border-radius: $border-radius;
+  background-color: var(--global-bg-color);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.timeline__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+.timeline__title {
+  margin: 0;
+  font-size: $type-size-4;
+  line-height: 1.3;
+}
+
+.timeline__date {
+  font-size: $type-size-6;
+  color: var(--global-text-color-light);
+  white-space: nowrap;
+}
+
+.timeline__subtitle {
+  margin: 0.2em 0 0.6em;
+  font-size: $type-size-6;
+  color: var(--global-text-color-light);
+}
+
+.timeline__body {
+  font-size: $type-size-6;
+
+  ul {
+    margin-bottom: 0;
+    padding-left: 1.2em;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   4. 代表作：整篇平铺展示（不点进下一层）
+   -------------------------------------------------------------------------- */
+
+.work-feature {
+  margin: 0 0 3em;
+  padding-top: 2em;
+  border-top: 1px solid var(--global-border-color);
+
+  &:first-of-type {
+    margin-top: 1.5em;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  &:last-of-type {
+    margin-bottom: 1em;
+  }
+}
+
+.archive .work-feature__title {
+  margin: 0 0 0.4em;
+  font-size: $type-size-3;
+  line-height: 1.3;
+  border-bottom: none;
+}
+
+.work-feature__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0 0 1.4em;
+  font-size: $type-size-6;
+  color: var(--global-text-color-light);
+}
+
+.work-feature__award {
+  display: inline-block;
+  padding: 0.22em 0.8em;
+  border-radius: 999px;
+  background-color: var(--global-base-color);
+  color: #fff;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+/* 作品主图（可放多张：能并排就并排，放不下自动换行） */
+.work-feature__media {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1em;
+  margin: 0 0 1.6em;
+
+  img {
+    display: block;
+    flex: 0 1 auto;
+    min-width: 0;
+    width: auto;
+    max-width: 100%;
+    max-height: 600px;
+    border: 1px solid var(--global-border-color);
+    border-radius: $border-radius;
+    box-shadow: 0 8px 26px rgba(#000, 0.13);
+  }
+}
+
+/* 需要并排展示时用（在 front matter 里写 media_style: "row"） */
+.work-feature__media--row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  justify-items: center;
+  align-items: start;
+}
+
+/* 实心按钮（作品链接 / 推文链接共用） */
+.work-feature__cta .btn,
+.article-item .btn {
+  display: inline-block;
+  padding: 0.55em 1.5em;
+  border: 1px solid var(--global-base-color);
+  border-radius: $border-radius;
+  background-color: var(--global-base-color);
+  color: #fff;
+  font-size: $type-size-6;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background-color: var(--global-link-color-hover);
+    border-color: var(--global-link-color-hover);
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.work-feature__cta {
+  margin: 1.4em 0 1.8em;
+}
+
+/* 策划案下载按钮下的版权提示 */
+.work-feature__notice {
+  margin: 0.9em 0 0;
+  font-size: $type-size-6;
+  line-height: 1.7;
+  color: var(--global-text-color-light);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. 页脚版权声明
+   -------------------------------------------------------------------------- */
+
+.page__footer-notice {
+  margin: 0 0 0.9em;
+  padding-bottom: 0.9em;
+  border-bottom: 1px solid var(--global-dark-border-color);
+  font-size: $type-size-6;
+  line-height: 1.75;
+  /* 版权声明要比页脚其他文字更清楚，所以用正文色而不是浅灰 */
+  color: var(--global-text-color);
+
+  strong {
+    margin-right: 0.2em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: var(--global-link-color-hover);
+    }
+  }
+}
+
+.work-feature__body {
+  h3 {
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+    font-size: $type-size-4;
+  }
+
+  h3:first-child {
+    margin-top: 0;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.25em;
+  }
+
+  p:last-child,
+  ul:last-child,
+  ol:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   5. 首页横幅图 + 图片说明
+   -------------------------------------------------------------------------- */
+
+.home-banner {
+  margin: 0 0 2.2em;
+
+  /* 竖版完整图：限高不限宽，保持原始比例居中显示 */
+  img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 680px;
+    margin: 0 auto;
+    border-radius: $border-radius;
+  }
+
+  /* 用 .home-banner 限定，才能盖过 .page__content p 的默认外边距 */
+  .photo-caption {
+    margin: 0.7em 0 0;
+    font-size: $type-size-6;
+    color: var(--global-text-color-light);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* 「这个网站有什么」列表里的竖线分隔符 */
+.entry-sep {
+  display: inline-block;
+  margin: 0 0.75em;
+  color: var(--global-text-color-light);
+  font-weight: normal;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. 简历：获奖列表
+   -------------------------------------------------------------------------- */
+
+.award-list {
+  margin: 1.2em 0 0;
+}
+
+.award-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.7em;
+  padding: 0.7em 0;
+  border-bottom: 1px solid var(--global-border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.award-item__year {
+  flex: 0 0 auto;
+  padding: 0.1em 0.7em;
+  border-radius: 999px;
+  background-color: var(--global-footer-bg-color);
+  color: var(--global-text-color-light);
+  font-size: $type-size-6;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.award-item__name {
+  flex: 1 1 60%;
+  min-width: 0;
+  font-weight: bold;
+  color: var(--global-text-color);
+}
+
+.award-item__note {
+  margin-left: 0.5em;
+  font-weight: normal;
+  font-size: $type-size-6;
+  color: var(--global-text-color-light);
+}
+
+.award-item__prize {
+  flex: 0 0 auto;
+  padding: 0.15em 0.8em;
+  border-radius: 999px;
+  background-color: var(--global-base-color);
+  color: #fff;
+  font-size: $type-size-6;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. 推文列表（标题纯文字 + 阅读按钮）
+   -------------------------------------------------------------------------- */
+
+.article-list {
+  margin: 1.4em 0 0;
+}
+
+.article-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9em;
+  padding: 0.85em 0;
+  border-bottom: 1px solid var(--global-border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.article-item__title {
+  flex: 1 1 60%;
+  min-width: 0;
+  font-weight: bold;
+  color: var(--global-text-color);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. 二维码
+   -------------------------------------------------------------------------- */
+
+.qr-block {
+  margin: 1.6em 0 0;
+  text-align: center;
+
+  img {
+    display: inline-block;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    border: 1px solid var(--global-border-color);
+    border-radius: $border-radius;
+    background-color: #fff;
+    /* 二维码放大时保持锐利，方便扫码 */
+    image-rendering: pixelated;
+  }
+}
+
+.qr-block__caption {
+  margin: 0.7em 0 0;
+  font-size: $type-size-6;
+  color: var(--global-text-color-light);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. 实习文案作品：逐条文案卡片
+   -------------------------------------------------------------------------- */
+
+.copy-piece {
+  margin: 1.3em 0;
+  padding: 1em 1.2em;
+  border-left: 3px solid var(--global-base-color);
+  border-radius: 0 $border-radius $border-radius 0;
+  background-color: var(--global-footer-bg-color);
+}
+
+.copy-piece__label {
+  margin-bottom: 0.55em;
+  font-size: $type-size-6;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  color: var(--global-base-color);
+}
+
+.copy-piece__text {
+  font-size: 0.95em;
+  line-height: 1.75;
+  color: var(--global-text-color);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. 小工具类
+   -------------------------------------------------------------------------- */
+
+/* 页面顶部的说明文字 */
+.section-intro {
+  margin-bottom: 1.5em;
+  color: var(--global-text-color-light);
+}
+
+@media print {
+  .work-card,
+  .hobby-card,
+  .timeline__item {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .work-feature {
+    break-inside: avoid;
+    border-top: none;
+  }
+}

@@ -1,0 +1,37 @@
+---
+layout: single
+---
+
+{% comment %}
+  「其他作品」里每件作品的详情页布局。
+  比普通 single 页多两样东西，顺序和「代表作」一致：
+    封面图  ->  阅读完整文件按钮  ->  正文
+  封面图取 front matter 的 header.teaser；
+  按钮取 front matter 的 file / file_text。
+
+  注意：这里刻意不用 link 字段。因为父布局 single.html 自带一个
+  「直接链接」按钮，也是读 page.link，会造成页面上出现两个同样的按钮。
+{% endcomment %}
+
+{% if page.header.teaser %}
+  <div class="work-feature__media">
+    {% if page.header.teaser contains '://' %}
+      <img src="{{ page.header.teaser }}" alt="{{ page.title | escape }}">
+    {% else %}
+      <img src="{{ page.header.teaser | prepend: '/images/' | relative_url }}" alt="{{ page.title | escape }}">
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if page.file %}
+  <div class="work-feature__cta">
+    {% if page.file contains '://' %}
+      <a class="btn" href="{{ page.file }}" target="_blank" rel="noopener">{{ page.file_text | default: "阅读完整文件" }}</a>
+    {% else %}
+      <a class="btn" href="{{ page.file | relative_url }}" target="_blank" rel="noopener">{{ page.file_text | default: "阅读完整文件" }}</a>
+    {% endif %}
+    <p class="work-feature__notice">本策划案为本人原创作品，仅供浏览，未经许可请勿转载或使用。</p>
+  </div>
+{% endif %}
+
+{{ content }}

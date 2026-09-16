@@ -1,33 +1,42 @@
-# The following is the order of the links in the header of the website.
+# 顶部导航栏（标签页）的链接与顺序
 #
-# Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
+# 用法说明：
+#   - 想调整标签页的先后顺序，直接上下移动下面的条目即可
+#   - 想新增标签页，复制一条，改 title（显示的名字）和 url（页面地址）
+#   - 从列表里删掉某一条，只是让它不在导航栏出现，
+#     对应的页面文件仍然保留在 _pages/ 目录里，随时可以加回来
 #
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
+# 说明：这里不再放「首页」。点击左上角的站名「张景南 ︱ 简历·作品集」即可回到首页。
+#
+# 注意：模板自带的其他页面（Publications / Talks / Teaching / Portfolio /
+#      Blog Posts / CV / Guide）都还在，只是没有放进导航栏。
+#      需要的话，把下面注释里的内容取消注释就能重新显示。
 
 main:
-  - title: "Publications"
-    url: /publications/
+  - title: "个人简历"
+    url: /resume/
 
-  - title: "Talks"
-    url: /talks/    
+  - title: "代表作"
+    url: /featured/
 
-  - title: "Teaching"
-    url: /teaching/    
-    
-  - title: "Portfolio"
-    url: /portfolio/
-        
-  - title: "Blog Posts"
-    url: /year-archive/
-    
-  - title: "CV"
-    url: /cv/
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
-  - title: "Guide"
-    url: /markdown/
+  - title: "其他作品"
+    url: /works/
+
+  - title: "兴趣"
+    url: /interests/
+
+# 模板自带、目前隐藏的标签页（按需取消注释）：
+#  - title: "Publications"
+#    url: /publications/
+#  - title: "Talks"
+#    url: /talks/
+#  - title: "Teaching"
+#    url: /teaching/
+#  - title: "Portfolio"
+#    url: /portfolio/
+#  - title: "Blog Posts"
+#    url: /year-archive/
+#  - title: "CV"
+#    url: /cv/
+#  - title: "Guide"
+#    url: /markdown/

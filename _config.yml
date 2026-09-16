@@ -18,6 +18,12 @@ url                      : https://minami21zhang.github.io # The base hostname &
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "minami21zhang/minami21zhang.github.io"
 
+# 静态资源版本号（用于绕过浏览器缓存）
+# 头像 images/profile.png、favicon 这些图片的「文件名没有变」，
+# 浏览器会很顽固地继续用旧缓存，导致你换了图却还看到老图。
+# 以后只要替换了这类图片，就把下面的数字 +1，浏览器就会重新下载。
+asset_version            : 2
+
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
 #               Additional customization can be done by editing /_includes/author-profile.html
@@ -233,6 +239,14 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
+  # 「代表作」：内容整篇直接展示在 /featured/ 页面上，
+  #           所以 output 设为 false，不额外生成每个作品的单独页面
+  featured:
+    output: false
+  # 「其他作品」：每件作品是 _works/ 下的一个 Markdown 文件
+  works:
+    output: true
+    permalink: /:collection/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -282,6 +296,23 @@ defaults:
       author_profile: true
       share: true
       comment: true
+  # _featured  （代表作）
+  - scope:
+      path: ""
+      type: featured
+    values:
+      layout: single
+      author_profile: true
+      share: true
+  # _works  （其他作品）
+  - scope:
+      path: ""
+      type: works
+    values:
+      layout: work
+      author_profile: true
+      # 关掉「分享到社交媒体」那一行
+      share: false
   # _talks
   - scope:
       path: ""

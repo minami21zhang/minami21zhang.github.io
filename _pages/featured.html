@@ -1,0 +1,61 @@
+---
+layout: archive
+title: "代表作"
+permalink: /featured/
+author_profile: true
+---
+
+<p class="section-intro">
+  三件获奖作品 —— 两次 24 小时限时创作，一次从零开始的校园新媒体实践。
+</p>
+
+{% if site.featured.size > 0 %}
+  {% for item in site.featured %}
+  <article class="work-feature">
+    <h2 class="work-feature__title">{{ item.title }}</h2>
+
+    {% if item.award or item.meta %}
+      <p class="work-feature__meta">
+        {% if item.award %}<span class="work-feature__award">{{ item.award }}</span>{% endif %}
+        {% if item.meta %}<span class="work-feature__meta-text">{{ item.meta }}</span>{% endif %}
+      </p>
+    {% endif %}
+
+    {% if item.images %}
+      <div class="work-feature__media{% if item.media_style == 'row' %} work-feature__media--row{% endif %}">
+        {% for img in item.images %}
+          {% if img contains '://' %}
+            <img src="{{ img }}" alt="{{ item.title | escape }}">
+          {% else %}
+            <img src="{{ img | prepend: '/images/' | relative_url }}" alt="{{ item.title | escape }}">
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% elsif item.header.teaser %}
+      <div class="work-feature__media">
+        {% if item.header.teaser contains '://' %}
+          <img src="{{ item.header.teaser }}" alt="{{ item.title | escape }}">
+        {% else %}
+          <img src="{{ item.header.teaser | prepend: '/images/' | relative_url }}" alt="{{ item.title | escape }}">
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if item.link %}
+      <p class="work-feature__cta">
+        {% if item.link contains '://' %}
+          <a class="btn" href="{{ item.link }}" target="_blank" rel="noopener">{{ item.link_text | default: "查看原文" }}</a>
+        {% else %}
+          <a class="btn" href="{{ item.link | relative_url }}" target="_blank" rel="noopener">{{ item.link_text | default: "查看原文" }}</a>
+        {% endif %}
+      </p>
+    {% endif %}
+
+    <div class="work-feature__body">
+      {{ item.content }}
+    </div>
+  </article>
+  {% endfor %}
+{% else %}
+  <p>还没有添加作品。在 <code>_featured/</code> 目录下新建一个 Markdown 文件即可，例如 <code>01-my-work.md</code>。</p>
+{% endif %}

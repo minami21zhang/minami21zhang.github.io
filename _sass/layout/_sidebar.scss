@@ -143,9 +143,7 @@
 .author__avatar {
   display: table-cell;
   vertical-align: top;
-  width: 36px;
-  // set width only, for non-square avatars
-  // height: 36px;
+  width: 44px;
 
   @include breakpoint($large) {
     display: block;
@@ -153,11 +151,22 @@
     height: auto;
   }
 
+  /* 头像图片：窄屏时是名字左边的小圆头像，宽屏时是侧边栏顶部的大圆头像。
+     这里显式写死宽高，避免图片被拉伸变形（模板原来把 .author__avatar
+     同时加在 div 和 img 上，使 img 继承了 table-cell 与 36px 宽度）。 */
   img {
-    max-width: 175px;
+    display: block;
+    width: 44px;
+    height: 44px;
+    max-width: 100%;
+    object-fit: cover;
     border-radius: 50%;
+    background-color: var(--global-footer-bg-color);
 
     @include breakpoint($large) {
+      width: auto;
+      height: auto;
+      max-width: 175px;
       padding: 5px;
       border: 1px solid var(--global-border-color);
     }

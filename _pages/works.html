@@ -1,0 +1,20 @@
+---
+layout: archive
+title: "其他作品"
+permalink: /works/
+author_profile: true
+---
+
+<p class="section-intro">
+  课程作业、比赛策划、随手拍的东西 —— 我爱我写的每一个字、按下的每一次快门。
+</p>
+
+{% if site.works.size > 0 %}
+  <div class="work-grid">
+    {% for item in site.works %}
+      {% include work-card.html item=item %}
+    {% endfor %}
+  </div>
+{% else %}
+  <p>还没有添加作品。在 <code>_works/</code> 目录下新建一个 Markdown 文件即可，例如 <code>01-my-work.md</code>。</p>
+{% endif %}

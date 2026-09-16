@@ -16,7 +16,9 @@ body {
 
   margin: 0;
   padding: $masthead-height 0 0;
-  padding-bottom: 9em;
+  /* 原来这里是 9em，用来给「固定在视口底部」的版权信息栏让位。
+     现在版权信息栏改成了跟随文档流（滚到底才出现），所以不需要再留这块空白。 */
+  padding-bottom: 0;
   font-family: $global-font-family;
   line-height: 1.5;
 

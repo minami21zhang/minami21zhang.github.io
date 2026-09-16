@@ -1,0 +1,55 @@
+{% comment %}
+  作品卡片 —— 供「代表作」(_pages/featured.md) 与「其他作品」(_pages/works.md) 列表页调用
+
+  用法：
+    {% for item in site.featured %}
+      {% include work-card.html item=item %}
+    {% endfor %}
+
+  卡片显示的内容，全部来自作品 Markdown 文件的 front matter：
+    title           标题（必填）
+    subtitle        副标题 / 一句话定位（可选）
+    excerpt         摘要，卡片上会自动截断（可选；不写则自动取正文第一段）
+    tags            标签数组，如 ["品牌策划", "视频"]（可选）
+    header.teaser   封面图文件名，图片放在 images/ 目录下（可选）
+    link            外部链接；填了就点卡片直接跳外链，不填则进入作品详情页（可选）
+{% endcomment %}
+
+{% assign item = include.item %}
+
+{% if item.link %}
+  {% assign item_href = item.link %}
+  {% assign item_attrs = 'target="_blank" rel="noopener"' %}
+{% else %}
+  {% assign item_href = item.url | relative_url %}
+  {% assign item_attrs = 'rel="permalink"' %}
+{% endif %}
+
+<article class="work-card">
+  <a class="work-card__link" href="{{ item_href }}" {{ item_attrs }}>
+    {% if item.header.teaser %}
+      <div class="work-card__teaser">
+        {% if item.header.teaser contains '://' %}
+          <img src="{{ item.header.teaser }}" alt="{{ item.title | escape }}">
+        {% else %}
+          <img src="{{ item.header.teaser | prepend: '/images/' | relative_url }}" alt="{{ item.title | escape }}">
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="work-card__teaser work-card__teaser--fallback">
+        <i class="fa-solid fa-image" aria-hidden="true"></i>
+      </div>
+    {% endif %}
+
+    <div class="work-card__body">
+      <h2 class="work-card__title">{{ item.title }}</h2>
+      {% if item.subtitle %}<p class="work-card__subtitle">{{ item.subtitle }}</p>{% endif %}
+      {% if item.excerpt %}<p class="work-card__excerpt">{{ item.excerpt | strip_html | strip_newlines | truncate: 80 }}</p>{% endif %}
+      {% if item.tags %}
+        <p class="work-card__tags">
+          {% for tag in item.tags %}<span class="work-card__tag">{{ tag }}</span>{% endfor %}
+        </p>
+      {% endif %}
+    </div>
+  </a>
+</article>
