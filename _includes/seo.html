@@ -7,7 +7,12 @@
 {% assign seo_url = seo_url | default: site.github.url %}
 
 {% if page.title %}
-  {% assign seo_title = page.title | append: " " | append: site.title_separator | append: " " | append: site.title %}
+  {% if page.url == "/" or page.url == "/index.html" %}
+    {% comment %} 首页标签页直接显示站名，避免「你好，我是张景南 - 张景南 ︱ 简历·作品集」这种重复 {% endcomment %}
+    {% assign seo_title = site.title %}
+  {% else %}
+    {% assign seo_title = page.title | append: " " | append: site.title_separator | append: " " | append: site.title %}
+  {% endif %}
 {% endif %}
 
 {% if seo_title %}
